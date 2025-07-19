@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dw1u0bf6j5aw0"]
+
+[ext_resource type="PackedScene" uid="uid://byvcsaymjy2oa" path="res://assets/models/Kenney-Prototype-Kit/floor-thick.glb" id="1_ukw5w"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ukw5w"]
+size = Vector3(1, 0.204102, 1)
+
+[node name="floor" type="StaticBody3D"]
+
+[node name="floor-thick2" parent="." instance=ExtResource("1_ukw5w")]
+
+[node name="floor-collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.102051, 0)
+shape = SubResource("BoxShape3D_ukw5w")

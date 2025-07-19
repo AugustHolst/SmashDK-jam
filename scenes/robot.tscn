@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dar0c0qbgk3rs"]
+
+[ext_resource type="Texture2D" uid="uid://dqn38jm2ermjh" path="res://icon.svg" id="1_br0rw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gl0xr"]
+size = Vector3(1, 1, 0.668945)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ykvnc"]
+albedo_texture = ExtResource("1_br0rw")
+billboard_mode = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_gl0xr"]
+material = SubResource("StandardMaterial3D_ykvnc")
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.0151367)
+shape = SubResource("BoxShape3D_gl0xr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("QuadMesh_gl0xr")

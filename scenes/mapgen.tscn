@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjq5d56bt6lbj"]
+
+[ext_resource type="Script" uid="uid://xpcg1sat5bv8" path="res://scripts/map.gd" id="1_lr3oj"]
+[ext_resource type="PackedScene" uid="uid://dw1u0bf6j5aw0" path="res://scenes/floor.tscn" id="2_aaavu"]
+
+[node name="Map" type="Node3D"]
+script = ExtResource("1_lr3oj")
+floor_tile = ExtResource("2_aaavu")

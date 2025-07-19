@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkmgthodxbmff"]
+
+[ext_resource type="PackedScene" uid="uid://07uqv7yfyuja" path="res://assets/models/Kenney-Prototype-Kit/floor-thick-corner-diagonal.glb" id="1_laeqc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_laeqc"]
+size = Vector3(1, 0.206543, 1)
+
+[node name="floor-diagonal" type="StaticBody3D"]
+
+[node name="floor-thick-corner-diagonal2" parent="." instance=ExtResource("1_laeqc")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor-thick-corner-diagonal2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.100342, 0)
+shape = SubResource("BoxShape3D_laeqc")
