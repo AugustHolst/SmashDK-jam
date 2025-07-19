@@ -1,18 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://bk1pppmgidyai"]
+[gd_scene load_steps=6 format=3 uid="uid://bk1pppmgidyai"]
 
+[ext_resource type="Script" uid="uid://bbclbo3f3yscs" path="res://scripts/enemy_bot.gd" id="1_3cc03"]
 [ext_resource type="Texture2D" uid="uid://dqn38jm2ermjh" path="res://icon.svg" id="1_pjnpe"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gl0xr"]
 size = Vector3(1, 1, 0.668945)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ykvnc"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3cc03"]
 albedo_texture = ExtResource("1_pjnpe")
 billboard_mode = 2
+billboard_keep_scale = true
 
 [sub_resource type="QuadMesh" id="QuadMesh_gl0xr"]
-material = SubResource("StandardMaterial3D_ykvnc")
+material = SubResource("StandardMaterial3D_3cc03")
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[node name="Enemy_bot" type="CharacterBody3D"]
+script = ExtResource("1_3cc03")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.0151367)
@@ -21,3 +24,5 @@ shape = SubResource("BoxShape3D_gl0xr")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("QuadMesh_gl0xr")
+
+[connection signal="attack_player" from="." to="." method="_on_attack_player"]

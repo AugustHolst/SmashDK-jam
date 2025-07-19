@@ -8,6 +8,7 @@ size = Vector3(1, 1, 0.668945)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ykvnc"]
 albedo_texture = ExtResource("1_br0rw")
 billboard_mode = 2
+billboard_keep_scale = true
 
 [sub_resource type="QuadMesh" id="QuadMesh_gl0xr"]
 material = SubResource("StandardMaterial3D_ykvnc")

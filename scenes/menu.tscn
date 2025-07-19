@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://lm0r6l5leiit"]
+
+[ext_resource type="Script" uid="uid://dppsvpel7ktd6" path="res://scripts/menu.gd" id="1_yqeox"]
+[ext_resource type="FontFile" uid="uid://dk6t0ud6qsmss" path="res://assets/fonts/karma.suture-regular.otf" id="2_vjb58"]
+
+[sub_resource type="Theme" id="Theme_con2f"]
+default_font = ExtResource("2_vjb58")
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yqeox")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.5
+offset_top = -337.437
+offset_right = 50.5
+offset_bottom = -236.437
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_con2f")
+
+[node name="Start" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Quit")
+text = "Start"
+
+[node name="Instructions" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Instructions"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../Start")
+text = "Quit
+"
+
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
