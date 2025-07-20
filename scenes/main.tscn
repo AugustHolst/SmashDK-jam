@@ -1,12 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://1108mwthb07h"]
+[gd_scene load_steps=13 format=3 uid="uid://1108mwthb07h"]
 
 [ext_resource type="Script" uid="uid://mpvqk2y15bit" path="res://scripts/main.gd" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://dkiv5dpjy1xpe" path="res://scenes/map.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://bo710ml7wlteq" path="res://scripts/camera_controller.gd" id="2_0wfyh"]
-[ext_resource type="PackedScene" uid="uid://dar0c0qbgk3rs" path="res://scenes/robot.tscn" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://grum73udlklr" path="res://scenes/player.tscn" id="2_tipki"]
 [ext_resource type="AudioStream" uid="uid://mecmyl5x7m4p" path="res://assets/sounds/tap.wav" id="5_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://bk1pppmgidyai" path="res://scenes/enemy_bot.tscn" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://c1n1c03ndu10g" path="res://scenes/hud.tscn" id="7_o6xl0"]
+[ext_resource type="Script" uid="uid://v51mkk7dxbad" path="res://scripts/bot_spawner.gd" id="8_tipki"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0wfyh"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -21,36 +22,72 @@ sky = SubResource("Sky_sugp2")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_o6xl0"]
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_jyhfs")
 
+[node name="Player" parent="." instance=ExtResource("2_tipki")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1.725)
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 7.47368, 0)
+visible = false
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_jyhfs")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0.453991, -0.891006, 0, 0.891006, 0.453991, 1, 1.98446e-08, -3.89471e-08, -4, 5, 4.5)
+transform = Transform3D(-3.89955e-08, 0.807579, -0.58976, 1.97493e-08, 0.58976, 0.807579, 1, 1.98446e-08, -3.89471e-08, -3.35836, 9.04596, 3.2)
+fov = 50.0
+size = 7.19683
 script = ExtResource("2_0wfyh")
 
-[node name="Map" parent="." instance=ExtResource("1_o5qli")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
-
-[node name="Bot" parent="." instance=ExtResource("3_sugp2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 2)
-
-[node name="Timer" type="Timer" parent="."]
+[node name="GlobalTimer" type="Timer" parent="."]
 autostart = true
 
 [node name="TickStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_tbgi4")
 
 [node name="Enemy_Bot" parent="." instance=ExtResource("6_tefeu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.25, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.25, 12)
 
 [node name="Hud" parent="." instance=ExtResource("7_o6xl0")]
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 3.17444, 5.90667, 2.65181)
+light_energy = 5.0
+spot_range = 12.1142
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 3.17444, 5.90667, 8.65181)
+light_energy = 5.0
+spot_range = 12.1142
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 3.174, 5.907, -3.348)
+light_energy = 5.0
+spot_range = 12.1142
+
+[node name="Map" parent="." instance=ExtResource("1_o5qli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="BotSpawner" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.929, 1.272, -2.721)
+script = ExtResource("8_tipki")
+
+[node name="SpawnTimer" type="Timer" parent="BotSpawner"]
+wait_time = 4.0
+autostart = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.071, 2, -2.7)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_o6xl0")
+
+[connection signal="timeout" from="GlobalTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="GlobalTimer" to="BotSpawner" method="_on_timer_timeout"]
 [connection signal="attack_player" from="Enemy_Bot" to="Hud" method="_on_enemy_bot_attack_player"]
+[connection signal="timeout" from="BotSpawner/SpawnTimer" to="BotSpawner" method="_on_spawn_timer_timeout"]

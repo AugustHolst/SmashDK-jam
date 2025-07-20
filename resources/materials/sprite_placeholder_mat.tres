@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ckwqa15xnedv6"]
+
+[ext_resource type="Texture2D" uid="uid://dqn38jm2ermjh" path="res://icon.svg" id="1_vtew3"]
+
+[resource]
+albedo_texture = ExtResource("1_vtew3")
+billboard_mode = 1
+billboard_keep_scale = true
