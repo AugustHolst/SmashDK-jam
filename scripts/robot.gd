@@ -2,6 +2,8 @@ extends CharacterBody3D
 
 @onready var ray = $RayCast3D
 
+var id: int
+
 var tween_conveyor: Tween
 var tween_move: Tween
 var tween_attack: Tween

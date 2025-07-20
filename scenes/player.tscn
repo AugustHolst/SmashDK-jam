@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://grum73udlklr"]
+[gd_scene load_steps=5 format=3 uid="uid://grum73udlklr"]
 
 [ext_resource type="Material" uid="uid://ckwqa15xnedv6" path="res://resources/materials/sprite_placeholder_mat.tres" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://c2ttdjltnivcg" path="res://scripts/player.gd" id="1_g2els"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u8vuu"]
 
@@ -8,6 +9,7 @@
 material = ExtResource("1_3vyb7")
 
 [node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_g2els")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -16,3 +18,16 @@ shape = SubResource("BoxShape3D_u8vuu")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("QuadMesh_u8vuu")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+target_position = Vector3(0, 0, -1.25)
+
+[node name="MoveTimer" type="Timer" parent="."]
+wait_time = 0.125
+
+[node name="PickTimer" type="Timer" parent="."]
+wait_time = 0.25
+
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
+[connection signal="timeout" from="PickTimer" to="." method="_on_pick_timer_timeout"]

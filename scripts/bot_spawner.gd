@@ -9,6 +9,7 @@ var last_conveyor_position_x = -11.0
 func _ready() -> void:
 	i = 0
 	robots = [robot.instantiate()]
+	robots[i].id = 0
 	add_child(robots[i])
 
 func _on_timer_timeout() -> void:
@@ -21,3 +22,6 @@ func _on_spawn_timer_timeout() -> void:
 	robots.append(robot.instantiate())
 	add_child(robots[len(robots) - 1])
 	last_conveyor_position_x += 1.0
+
+func _on_player_picked(id) -> void:
+	robots.remove_at(id)

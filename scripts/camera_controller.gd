@@ -9,15 +9,15 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if Input.is_action_pressed("cam_forward"):
-		position.x += CAMERA_SPEED;
-	if Input.is_action_pressed("cam_left"):
-		position.z -= CAMERA_SPEED;
-	if Input.is_action_pressed("cam_back"):
-		position.x -= CAMERA_SPEED;
-	if Input.is_action_pressed("cam_right"):
-		position.z += CAMERA_SPEED;
+#func _process(delta):
+	#if Input.is_action_pressed("cam_forward"):
+		#position.x += CAMERA_SPEED;
+	#if Input.is_action_pressed("cam_left"):
+		#position.z -= CAMERA_SPEED;
+	#if Input.is_action_pressed("cam_back"):
+		#position.x -= CAMERA_SPEED;
+	#if Input.is_action_pressed("cam_right"):
+		#position.z += CAMERA_SPEED;
 
 func _physics_process(delta):
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
